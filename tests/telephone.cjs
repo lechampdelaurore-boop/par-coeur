@@ -138,6 +138,15 @@ async function tient(page) {
     pr = await page.evaluate(() => __parcoeur.prog());
     note(/5 vers sur 6/.test(txt) && pr.m[0].due && pr.m[1].box === 1, 'Récitation devant un adulte : « ' + txt + ' »');
     await page.screenshot({ path: 'captures/recitation-adulte.png' });
+    await page.click('#fSuite');
+    note(!(await page.evaluate(() => __parcoeur.plan())).some(t => t.endsWith('P')), 'Récitation devant un parent faite : pas redemandée le même jour');
+    await page.evaluate(() => __parcoeur.jours(4));
+    const plan4 = await page.evaluate(() => __parcoeur.plan());
+    note(plan4[plan4.length - 1] === 'depuisP' && await page.isVisible('text=Récitation devant un parent aujourd'), '3 jours plus tard : récitation devant un parent proposée (' + plan4.join() + ')');
+    await page.evaluate(() => __parcoeur.parent());
+    const bleu = await page.getAttribute('#aAdulte', 'class');
+    note(/btn-action/.test(bleu) && await page.isVisible('text=récite devant un parent'), 'Ce jour-là, « Avec un adulte » est le bouton bleu');
+    await page.screenshot({ path: 'captures/jour-parent.png' });
     note(!erreurs.length, 'Parcours sans erreur console' + (erreurs.length ? ' : ' + erreurs.join(' / ') : ''));
     await page.close();
   }

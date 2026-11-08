@@ -40,7 +40,7 @@ Avec le bouton « 📅 Date de la récitation » (ou dans ⚙), indiquer **la da
 
 ## La récitation avec un adulte
 
-L'enfant dit lui-même s'il a su. À 10 ans, on a souvent tendance à se surestimer : de temps en temps, et surtout dans les derniers jours, faire **« Réciter depuis le début » avec l'option « Avec un adulte »**.
+L'enfant dit lui-même s'il a su. À 10 ans, on a souvent tendance à se surestimer. C'est pourquoi **tous les 3 jours, et la veille de la récitation**, l'appli termine la séance du jour par « Aujourd'hui : récite devant un parent 🧑 » ; l'écran de la poésie affiche aussi « Récitation devant un parent aujourd'hui ». On peut aussi la faire quand on veut : « Réciter depuis le début », puis « Avec un adulte ».
 
 - L'adulte tient le téléphone et voit tout le texte ; l'enfant récite sans regarder l'écran.
 - Toucher chaque vers où l'enfant a hésité ou s'est trompé.

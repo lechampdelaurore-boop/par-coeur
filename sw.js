@@ -1,6 +1,6 @@
 // Garde l'appli disponible hors ligne.
 // Changer CACHE à chaque mise à jour des fichiers listés ci-dessous.
-var CACHE = 'par-coeur-v1';
+var CACHE = 'par-coeur-v2';
 var FILES = [
   './',
   './index.html',

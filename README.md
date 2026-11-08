@@ -33,6 +33,7 @@ Apprendre une poésie par cœur, morceau par morceau, en 5 à 10 minutes par jou
 2. Puis **un** morceau nouveau (deux ou trois si la récitation approche et qu'il reste beaucoup de morceaux).
 3. Quand tous les morceaux sont sus, « Réciter depuis le début » fait partie de la séance.
 4. La veille et le jour de la récitation, tout est à revoir.
+5. Tous les 3 jours, ainsi que la veille et le jour de la récitation, la séance se termine par « Aujourd'hui : récite devant un parent 🧑 » (le bouton « Avec un adulte » est alors le bouton bleu). L'écran de la poésie l'annonce aussi.
 
 Après une révision : « Je l'ai su » éloigne la prochaine révision, « Presque » la ramène au lendemain sans enlever d'étoile, « Pas encore » la ramène au lendemain et refait vite les marches avec aide.
 
