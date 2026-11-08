@@ -1306,6 +1306,8 @@ dialog h2 { margin-bottom: 8px; }
       var d = ecart(t, pr.date);
       if (d >= 0) infos += '<span class="pastille soleil">📅 ' + (d === 0 ? 'Récitation aujourd\'hui !' : d === 1 ? 'Récitation demain' : 'Récitation dans ' + d + ' jours') + '</span>';
     }
+    if (!pr.debut && pr.m.some(function (m) { return m.niv >= 4; })) { pr.debut = t; sauverProg(); }
+    if (jourParent(pr, t)) infos += '<span class="pastille soleil">🧑 Récitation devant un parent aujourd\'hui</span>';
     if (pr.jour === t) infos += '<span class="pastille rose">✓ Séance du jour faite</span>';
     $('#pInfos').innerHTML = infos;
     var c = conseille(pr), h = '';
@@ -1334,6 +1336,13 @@ dialog h2 { margin-bottom: 8px; }
     }
     return 1;
   }
+  // Récitation devant un parent : tous les 3 jours, plus la veille et le jour de la récitation.
+  function jourParent(pr, t) {
+    if (!pr.m.some(function (m) { return m.niv >= 4; }) || pr.parent === t) return false;
+    if (pr.date) { var d = ecart(t, pr.date); if (d === 0 || d === 1) return true; }
+    var ref = pr.parent || pr.debut;
+    return !!ref && ecart(ref, t) >= 3;
+  }
   function planDuJour() {
     var po = poeme(), pr = progDe(po), t = auj(), taches = [];
     var veille = pr.date && ecart(t, pr.date) >= 0 && ecart(t, pr.date) <= 1;
@@ -1346,6 +1355,10 @@ dialog h2 { margin-bottom: 8px; }
       dus.slice(0, 3).forEach(function (i) { taches.push({ type: 'reviser', m: i }); });
       restants.slice(0, nbNouveaux(pr, restants.length, t)).forEach(function (i) { taches.push({ type: 'apprendre', m: i }); });
       if (!restants.length) taches.push({ type: 'depuis' });
+    }
+    if (jourParent(pr, t)) {
+      taches = taches.filter(function (x) { return x.type !== 'depuis'; });
+      taches.push({ type: 'depuis', parent: true });
     }
     return taches;
   }
@@ -1441,7 +1454,12 @@ dialog h2 { margin-bottom: 8px; }
   }
   function rendreDepuis() {
     var po = T.po, zone = $('#jZone'), cons, zh = '', act;
-    if (T.etape === 'choix') {
+    if (T.etape === 'choix' && T.parent) {
+      cons = 'Aujourd\'hui : récite devant un parent 🧑<small>' + T.liste.length + ' morceau' + (T.liste.length > 1 ? 'x' : '') + ' à la suite, sans aide.</small>';
+      zh = '<div class="pile" style="padding:6px">' + T.liste.map(function (i) { return '<div class="titre-morceau" style="margin:0"><span>' + po.morceaux[i].e + '</span><span>' + (i + 1) + '. ' + esc(po.morceaux[i].t) + '</span></div>'; }).join('') +
+        '<p class="astuce" style="margin:4px 0 0">Va chercher un parent. Il tient le téléphone, voit le texte et touche les vers où tu as hésité. Toi, tu récites sans regarder.</p></div>';
+      act = '<div class="ligne-btn">' + bouton('aSeul', 'Tout seul') + bouton('aAdulte', '🧑 Avec un adulte', 'btn-action') + '</div>';
+    } else if (T.etape === 'choix') {
       cons = 'Réciter depuis le début<small>' + T.liste.length + ' morceau' + (T.liste.length > 1 ? 'x' : '') + ' à la suite, sans aide.</small>';
       zh = '<div class="pile" style="padding:6px">' + T.liste.map(function (i) { return '<div class="titre-morceau" style="margin:0"><span>' + po.morceaux[i].e + '</span><span>' + (i + 1) + '. ' + esc(po.morceaux[i].t) + '</span></div>'; }).join('') +
         '<p class="astuce" style="margin:4px 0 0">Avec un adulte : l\'adulte tient le téléphone, voit le texte et touche les vers où tu as hésité.</p></div>';
@@ -1512,6 +1530,7 @@ dialog h2 { margin-bottom: 8px; }
         if (pm.niv < mk) pm.niv = mk;
         if (mk >= 4) {
           if (pm.box < 1) pm.box = 1;
+          if (!T.pr.debut) T.pr.debut = auj();
           pm.due = plus(auj(), 1);
           sauverProg();
           if (T.type === 'reviser') { T.note = 'revu'; return finTache(); }
@@ -1594,6 +1613,7 @@ dialog h2 { margin-bottom: 8px; }
     } else {
       var sus = T.notes.filter(function (n) { return n === 'su'; }).length;
       if (T.adulte) {
+        pr.parent = auj(); sauverProg();
         var tot = 0, h = Object.keys(T.hesite).length;
         T.liste.forEach(function (i) { tot += po.morceaux[i].a - po.morceaux[i].de + 1; });
         texte = (tot - h) + ' vers sur ' + tot + ' sans aide.';
@@ -1808,10 +1828,11 @@ dialog h2 { margin-bottom: 8px; }
   window.__parcoeur = {
     etat: function () { return { vue: VUE, tache: T && { type: T.type, m: T.m, etape: T.etape, marche: T.marche, verif: !!T.verif, k: T.k, q: T.q }, seance: SES && { i: SES.i, n: SES.taches.length, taches: SES.taches.map(function (t) { return t.type + (t.m != null ? t.m : ''); }) } }; },
     prog: function () { return progDe(poeme()); },
-    plan: function () { return planDuJour().map(function (t) { return t.type + (t.m != null ? t.m : ''); }); },
+    plan: function () { return planDuJour().map(function (t) { return t.type + (t.m != null ? t.m : '') + (t.parent ? 'P' : ''); }); },
     jours: function (n) { DECALAGE = n; afficherPoeme(); },
     poeme: function () { return poeme().id; },
     trous: function () { return T && T.trous; },
+    parent: function () { lancerSeance([{ type: 'depuis', parent: true }]); },
     decouper: decouper,
     mots: function () { return POEMES_FIXES[0].mots.filter(function (m) { return !POEMES_FIXES[0].vers.some(function (v) { return trouver(v[1], m[0]) >= 0; }); }).map(function (m) { return m[0]; }); }
   };
