@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9E0FF"/><stop offset="1" stop-color="#CDEBFF"/></linearGradient>
+    <clipPath id="c"><path d="M256 430C150 360 86 300 86 214c0-58 44-102 98-102 32 0 56 16 72 42 16-26 40-42 72-42 54 0 98 44 98 102 0 86-64 146-170 216z"/></clipPath>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#f)"/>
+  <g clip-path="url(#c)">
+    <rect x="60" y="100" width="400" height="360" fill="#FF6FA5"/>
+    <path d="M320 100h140v360H170c110-50 165-170 150-360z" fill="#E8508A"/>
+  </g>
+  <path d="M256 430C150 360 86 300 86 214c0-58 44-102 98-102 32 0 56 16 72 42 16-26 40-42 72-42 54 0 98 44 98 102 0 86-64 146-170 216z" fill="none" stroke="#2B2340" stroke-width="16" stroke-linejoin="round"/>
+  <g stroke="#FFFFFF" stroke-width="18" stroke-linecap="round">
+    <path d="M160 214h150"/><path d="M180 258h120"/><path d="M206 302h80"/>
+  </g>
+  <ellipse cx="170" cy="168" rx="26" ry="16" fill="#fff" opacity=".6" transform="rotate(-30 170 168)"/>
+  <path d="M392 92l10 26 26 10-26 10-10 26-10-26-26-10 26-10z" fill="#FFD45C" stroke="#2B2340" stroke-width="6" stroke-linejoin="round"/>
+</svg>
