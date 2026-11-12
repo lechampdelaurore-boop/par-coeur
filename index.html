@@ -997,7 +997,8 @@ dialog h2 { margin-bottom: 8px; }
   /* ---------- Les poésies fournies avec l'appli ----------
      vers : [qui parle, texte]  (n = conteur, l = loup, a = agneau, al = les deux)
      morceaux : t = titre, e = émoji, de/a = premier et dernier vers (inclus),
-                g = geste, trous = [n° du vers, mot exact, 2 pièges]
+                g = geste, trous = [n° du vers, mot exact, 2 pièges] :
+                seulement pour les formes anciennes (erreurs prévisibles en récitant)
      mots : [expression exacte du texte, sens, ancien ?] */
   var POEMES_FIXES = [{
     id: 'loup-agneau',
@@ -1037,21 +1038,17 @@ dialog h2 { margin-bottom: 8px; }
     ],
     morceaux: [
       { t: 'La morale', e: '💪', de: 0, a: 1, g: 'Montre tes muscles comme un costaud, puis lève un doigt : « Nous l\'allons montrer ».',
-        trous: [[0, 'meilleure', ['plus forte', 'gagnante']], [1, 'allons', ['vais', 'voulons']], [1, 'heure', ['instant', 'histoire']]] },
-      { t: "L'agneau boit, le loup arrive", e: '💧', de: 2, a: 5, g: 'Fais semblant de boire dans tes mains, puis marche à pas de loup en tenant ton ventre qui a faim.',
-        trous: [[2, 'désaltérait', ['baignait', 'promenait']], [3, 'onde', ['eau', 'source']], [4, 'jeun', ['genoux', 'pied']]] },
-      { t: 'Le loup se fâche', e: '🐺', de: 6, a: 8, g: 'Prends une grosse voix fâchée et pointe le doigt vers l\'agneau.',
-        trous: [[6, 'breuvage', ['ruisseau', 'repas']], [7, 'rage', ['faim', 'joie']], [8, 'témérité', ['méchanceté', 'bêtise']]] },
-      { t: "L'agneau répond poliment", e: '🐑', de: 9, a: 11, g: 'Fais une petite révérence et parle d\'une toute petite voix douce.',
-        trous: [[9, 'Majesté', ['Altesse', 'Grandeur']], [10, 'colère', ['rage', 'furie']], [11, 'considère', ['regarde', 'comprenne']]] },
+        trous: [[1, "l'allons montrer", ['allons le montrer', 'allons montrer']]] },
+      { t: "L'agneau boit, le loup arrive", e: '💧', de: 2, a: 5, g: 'Fais semblant de boire dans tes mains, puis marche à pas de loup en tenant ton ventre qui a faim.' },
+      { t: 'Le loup se fâche', e: '🐺', de: 6, a: 8, g: 'Prends une grosse voix fâchée et pointe le doigt vers l\'agneau.' },
+      { t: "L'agneau répond poliment", e: '🐑', de: 9, a: 11, g: 'Fais une petite révérence et parle d\'une toute petite voix douce.' },
       { t: 'Je bois plus bas', e: '🏞️', de: 12, a: 16, g: 'Ta main suit le courant qui descend. Compte sur tes doigts : « vingt pas ».',
-        trous: [[12, 'vas', ['vais', 'suis']], [14, 'vingt', ['dix', 'cent']], [16, 'puis', ['peux', 'sais']]] },
+        trous: [[12, 'vas', ['vais', 'suis']], [16, 'puis', ['peux', 'sais']]] },
       { t: "L'an passé\u00a0?", e: '🍼', de: 17, a: 20, g: 'Grosse voix pour le loup, puis l\'agneau ouvre grand les bras : « pas né ! »',
-        trous: [[17, 'cruelle', ['méchante', 'affamée']], [18, 'médis', ['mentis', 'parlas']], [20, 'encor', ['toujours', 'aussi']]] },
+        trous: [[20, 'encor', ['encore', 'toujours']]] },
       { t: 'Ton frère, les tiens', e: '🐕', de: 21, a: 24, g: 'L\'agneau secoue la tête : « je n\'en ai point ». Le loup compte sur ses doigts : vous, vos bergers, vos chiens.',
-        trous: [[21, 'frère', ['père', 'cousin']], [22, 'point', ['pas', 'plus']], [24, 'bergers', ['moutons', 'fermiers']]] },
-      { t: 'La fin', e: '🌲', de: 25, a: 28, g: 'Le loup attrape l\'agneau, l\'emporte dans la forêt et… croque !',
-        trous: [[25, 'venge', ['mange', 'sauve']], [26, 'forêts', ['bois', 'prés']], [28, 'procès', ['jugement', 'discours']]] }
+        trous: [[22, 'point', ['pas', 'plus']]] },
+      { t: 'La fin', e: '🌲', de: 25, a: 28, g: 'Le loup attrape l\'agneau, l\'emporte dans la forêt et… croque !' }
     ],
     mots: [
       ['La raison du plus fort', 'C\'est le plus fort qui gagne, même quand il a tort.'],
@@ -1256,21 +1253,13 @@ dialog h2 { margin-bottom: 8px; }
   function versDe(po, m) { var mo = po.morceaux[m], r = []; for (var i = mo.de; i <= mo.a; i++) r.push(po.vers[i][1]); return r; }
 
   /* ---------- « Le mot qui manque » ---------- */
-  function trousDe(po, m) {
-    var mo = po.morceaux[m];
-    if (mo.trous) return melange(mo.trous).slice(0, 2);
-    // Poésie ajoutée : le dernier mot d'un vers (celui qui rime), avec d'autres fins de vers comme pièges.
-    var fin = function (t) { var w = t.match(/\p{L}[\p{L}'’-]*/gu); return w ? w[w.length - 1] : ''; };
-    var fins = [];
-    po.vers.forEach(function (v) { var f = fin(v[1]); if (f.length >= 3 && fins.indexOf(f.toLowerCase()) < 0) fins.push(f.toLowerCase()); });
-    var r = [];
-    for (var i = mo.de; i <= mo.a; i++) {
-      var f = fin(po.vers[i][1]);
-      if (f.length < 3) continue;
-      var pieges = melange(fins.filter(function (x) { return x !== f.toLowerCase(); })).slice(0, 2);
-      if (pieges.length === 2) r.push([i, f, pieges]);
-    }
-    return melange(r).slice(0, 2);
+  // Seulement pour les formes anciennes (« je me vas », « encor »…), qu'on a tendance à « corriger »
+  // en récitant. Morceau sans mot ancien, ou poésie ajoutée : pas de question, on passe à « Enchaîner ».
+  function trousDe(po, m) { return melange(po.morceaux[m].trous || []); }
+  function sensAncien(po, q) {
+    var v = po.vers[q[0]][1], r = null;
+    (po.mots || []).forEach(function (x) { var i = trouver(v, x[0]), j = trouver(v, q[1]); if (x[2] && i >= 0 && j >= i && j < i + x[0].length) r = x[1]; });
+    return r;
   }
 
   /* ---------- Écrans ---------- */
@@ -1429,14 +1418,16 @@ dialog h2 { margin-bottom: 8px; }
       }
     } else if (T.etape === 'trous') {
       var q = T.trous[T.q];
-      cons = 'Quel mot manque ?<small>Question ' + (T.q + 1) + ' sur ' + T.trous.length + '</small>';
+      cons = 'Quel mot ancien manque ?<small>Question ' + (T.q + 1) + ' sur ' + T.trous.length + '</small>';
       zh = htmlMorceau(po, T.m, 1, { trou: q, rempli: T.repondu != null });
       if (T.repondu == null) {
         act = '<div class="choix-mots">' + T.choix.map(function (c, i) {
           return '<button type="button" class="choix choix-mot" data-c="' + i + '"><span class="lettre">' + 'ABC'[i] + '</span>' + esc(c) + '</button>';
         }).join('') + '</div>';
       } else {
-        act = (T.repondu !== q[1] ? '<p class="astuce" style="margin:0">Le bon mot était « ' + esc(q[1]) + ' ». Redis le vers à voix haute.</p>' : '') + bouton('aSuite', 'Suivant', 'btn-action');
+        var sa = sensAncien(po, q);
+        var txt = (T.repondu !== q[1] ? 'Le bon mot était « ' + esc(q[1]) + ' ». ' : '') + (sa ? esc(sa) + ' ' : '') + (T.repondu !== q[1] ? 'Redis le vers à voix haute.' : '');
+        act = (txt ? '<p class="astuce" style="margin:0">' + txt + '</p>' : '') + bouton('aSuite', 'Suivant', 'btn-action');
       }
       if (T.repondu != null) zone.classList.add(T.repondu === q[1] ? 'reussie' : 'a-retenter');
     } else if (T.etape === 'enchainer') {

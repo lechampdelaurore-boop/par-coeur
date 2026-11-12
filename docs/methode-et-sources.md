@@ -14,7 +14,7 @@ Pourquoi Par cœur est fait comme ça, et d'où viennent les idées. Synthèse d
 | **Petits morceaux, puis enchaîner** : apprendre une partie, puis la relier à ce qui est déjà su (méthode « progressive », déjà décrite par Lyon, 1917). | Morceaux de 2 à 5 vers ; « Enchaîner » avec le morceau d'avant ; « Réciter depuis le début ». |
 | **Espacer.** À temps égal, plusieurs courtes séances sur plusieurs jours valent bien mieux qu'une longue (plus de 300 expériences, Cepeda et al., 2006), aussi pour des paroles apprises mot à mot (Katz, Ando & Wiseheart, 2021). | Séances de 5 à 10 min ; révisions à J+1, J+2, J+4, J+7 ; plan jusqu'à la date de récitation. |
 | **Dormir dessus.** Le sommeil consolide la mémoire chez l'enfant (Ashworth et al., 2014). | Rappel : « Ce soir, redis-le une fois avant de dormir ». |
-| **La rime et le rythme** servent de crochets : ils limitent les mots possibles à un endroit du vers (Rubin, 1995 ; Kozlowski, 1977). Les premières lettres gardent aussi la longueur du vers. | Marche « premières lettres » ; pour une poésie ajoutée, « Le mot qui manque » porte sur le mot qui rime. |
+| **La rime et le rythme** servent de crochets : ils limitent les mots possibles à un endroit du vers (Rubin, 1995 ; Kozlowski, 1977). Les premières lettres gardent aussi la longueur du vers. | Marche « premières lettres ». |
 | **Attention, engagement actif, retour d'information, consolidation** : les « quatre piliers » de l'apprentissage (Dehaene, 2018). | Une seule tâche par écran, l'enfant agit à chaque étape, « Vérifier » montre tout de suite le texte, révisions espacées. |
 
 ## Les choix qui ne viennent pas directement d'une étude
@@ -22,7 +22,7 @@ Pourquoi Par cœur est fait comme ça, et d'où viennent les idées. Synthèse d
 - **Les 4 délais (J+1, J+2, J+4, J+7)** : une progression simple, dans l'esprit des travaux sur l'espacement. Aucune étude ne fixe les délais idéaux pour une poésie à réciter dans une ou deux semaines.
 - **2 à 5 vers par morceau**, coupés selon le sens (une réplique, une action) : une taille qui tient dans la mémoire de travail d'un enfant, avec un sens complet.
 - **« Je l'ai su » / « Presque » / « Pas encore »** : trois choix plutôt que juste ou faux, pour que l'enfant juge lui-même sans se sentir en échec.
-- **Les formes anciennes** (*je me vas*, *encor*…) sont entraînées à part, car on a naturellement tendance à les « corriger » en récitant.
+- **« Le mot qui manque », seulement pour les formes anciennes** (*je me vas*, *encor*, *je ne puis*, *nous l'allons montrer*, *je n'en ai point*). Aucune étude ne valide cet exercice. C'est un entraînement ciblé sur des erreurs qu'on peut prévoir : on a naturellement tendance à « corriger » ces formes en récitant. On peut le rattacher de loin à « se tester plutôt que relire » (retrouver le mot de mémoire), mais les 4 marches font déjà retrouver tout le texte de mémoire. C'est pourquoi l'exercice ne revient pas sur les autres mots, ni dans les poésies ajoutées.
 
 ## Limites
 

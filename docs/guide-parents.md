@@ -28,7 +28,7 @@ Avec le bouton « 📅 Date de la récitation » (ou dans ⚙), indiquer **la da
 
 1. **Écouter et comprendre** : la voix lit le morceau, chaque vers montre qui parle. Les mots soulignés s'expliquent quand on les touche. C'est le bon moment pour en parler : « Pourquoi le loup dit ça ? Qu'est-ce que veut l'agneau ? ».
 2. **Les 4 marches** : texte complet, premières lettres, premier mot de chaque vers, rien. À chaque marche, l'enfant récite, touche « Vérifier » et dit s'il a su.
-3. **Le mot qui manque** : deux petites questions sur les mots qu'on confond facilement.
+3. **Le mot qui manque** (seulement si le morceau contient un mot ancien) : un vers avec un trou, et trois choix dont la forme « corrigée » qu'on a envie de dire (*je me vais* au lieu de *je me vas*). Après la réponse, l'appli rappelle le sens du mot ancien. Les autres morceaux, et les poésies ajoutées, passent directement à l'étape suivante.
 4. **Enchaîner** : réciter le morceau d'avant puis le nouveau, pour ne pas bloquer au passage de l'un à l'autre.
 5. **Bravo** : étoiles et un personnage.
 

@@ -107,7 +107,11 @@ async function tient(page) {
     note((await etat(page)).tache.marche === 1, '« Pas encore » redonne plus d\'aide (marche 1)');
     await page.click('#aSuite');
     for (let k = 0; k < 3; k++) { await page.click('#aVerif'); await page.click('#nSu'); }
-    for (let k = 0; k < 2; k++) { await page.click('.choix-mot >> nth=0'); await page.click('#aSuite'); }
+    const tr0 = await page.evaluate(() => __parcoeur.trous());
+    note(tr0.length === 1 && tr0[0][1] === "l'allons montrer", '« Le mot qui manque » : seulement le mot ancien du morceau 1 (' + tr0.map(t => t[1]).join(', ') + ')');
+    await page.click('.choix-mot >> nth=0');
+    note(await page.isVisible('text=Façon ancienne de dire'), 'Après la réponse : le sens du mot ancien s\'affiche');
+    await page.click('#aSuite');
     let e = await etat(page);
     let pr = await page.evaluate(() => __parcoeur.prog());
     note(e.vue === 'vFin' && pr.m[0].niv === 4 && pr.m[0].box === 1 && pr.jour, 'Morceau 1 su, séance du jour notée');
@@ -124,9 +128,8 @@ async function tient(page) {
     await page.click('#fSuite');
     await page.click('#aSuite'); await page.click('#aSuite');
     for (let k = 0; k < 3; k++) { await page.click('#aVerif'); await page.click('#nSu'); }
-    for (let k = 0; k < 2; k++) { await page.click('.choix-mot >> nth=0'); await page.click('#aSuite'); }
     e = await etat(page);
-    note(e.tache.etape === 'enchainer', 'Morceau 2 : on enchaîne avec le morceau 1');
+    note(e.tache.etape === 'enchainer', 'Morceau 2 (pas de mot ancien) : pas de « mot qui manque », on enchaîne tout de suite avec le morceau 1');
     await page.click('#aVerif'); await page.click('#nSu');
     await page.click('#fSuite');
 
@@ -183,8 +186,8 @@ async function tient(page) {
     await page.click('.tuile[data-m="1"]');
     await page.click('#aSuite'); await page.click('#aSuite');
     for (let k = 0; k < 3; k++) { await page.click('#aVerif'); await page.click('#nSu'); }
-    const tr = await page.evaluate(() => __parcoeur.trous());
-    note(tr && tr.length === 2, 'Mots qui manquent créés tout seuls (' + (tr || []).map(t => t[1]).join(', ') + ')');
+    const ea = await etat(page);
+    note(ea.vue === 'vFin', 'Poésie ajoutée : pas de « mot qui manque », le morceau se termine après les 4 marches');
     note(!erreurs.length, 'Poésie ajoutée sans erreur console' + (erreurs.length ? ' : ' + erreurs.join(' / ') : ''));
     await page.close();
   }
