@@ -22,7 +22,7 @@ Apprendre une poésie par cœur, morceau par morceau, en 5 à 10 minutes par jou
 ## Les écrans
 
 - **L'écran de la poésie** : le poème en cours (« Morceaux sus : 3 sur 8 », « Récitation dans 4 jours ») et un seul gros bouton bleu : **« Ma séance du jour »**. En dessous, les morceaux en tuiles colorées, dans l'ordre, chacune avec un émoji et un titre court. Chaque tuile montre son état : nouveau, marche 1 à 4, su ⭐ (jusqu'à 3 étoiles au fil des révisions), à revoir 🔔. Le prochain morceau conseillé porte « 👉 Conseillé ». On peut toucher n'importe quel morceau. Boutons : « Réciter depuis le début », « Écouter toute la poésie », « Date de la récitation », « Mes poésies ».
-- **Apprendre un morceau** (5 à 8 minutes) : écouter et comprendre, les 4 marches, « Le mot qui manque » (un vers avec un trou et 3 mots au choix, surtout pour les mots anciens et rares), enchaîner avec le morceau d'avant, puis bravo, étoiles et un personnage.
+- **Apprendre un morceau** (5 à 8 minutes) : écouter et comprendre, les 4 marches, « Le mot qui manque » (seulement dans les morceaux qui ont un mot ancien, comme *je me vas* ou *encor* : un vers avec un trou et 3 choix), enchaîner avec le morceau d'avant, puis bravo, étoiles et un personnage.
 - **Réviser un morceau** : directement sans aide, puis « Vérifier ».
 - **Réciter depuis le début** : tous les morceaux commencés, à la suite, sans aide (seulement les émojis de qui parle). Option **« Avec un adulte »** : l'adulte voit tout le texte et touche les vers où l'enfant a hésité ; ces vers-là sont mis à revoir.
 - **Écouter tout le poème** : la voix lit le poème, le vers lu est surligné.
@@ -56,7 +56,7 @@ Les mots difficiles (onde, à jeun, breuvage, témérité, médis, épargnez, pr
 
 ## Ajouter une poésie
 
-Par « 📚 Mes poésies » (ou ⚙ puis « Coin des parents ») : titre, auteur et texte collé. Une ligne vide marque un nouveau morceau ; sans ligne vide, l'appli coupe tous les 4 vers. Pour une poésie ajoutée, il n'y a ni émoji de qui parle, ni geste, ni mots expliqués, et « Le mot qui manque » porte sur le mot qui rime. On peut aussi supprimer une poésie ajoutée ou remettre à zéro les progrès d'une poésie.
+Par « 📚 Mes poésies » (ou ⚙ puis « Coin des parents ») : titre, auteur et texte collé. Une ligne vide marque un nouveau morceau ; sans ligne vide, l'appli coupe tous les 4 vers. Pour une poésie ajoutée, il n'y a ni émoji de qui parle, ni geste, ni mots expliqués, et pas de « Le mot qui manque » : après les 4 marches, on enchaîne directement. On peut aussi supprimer une poésie ajoutée ou remettre à zéro les progrès d'une poésie.
 
 ## Réglages ⚙
 
