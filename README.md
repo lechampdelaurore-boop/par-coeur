@@ -62,7 +62,7 @@ Par « 📚 Mes poésies » (ou ⚙ puis « Coin des parents ») : titre, auteur
 
 Sons, animations, vibration, voix (oui ou non, lente ou normale) et date de la récitation. Les animations respectent aussi le réglage « réduire les animations » du téléphone. La voix est celle de l'appareil : elle peut mal prononcer certains mots anciens.
 
-Les progrès et les poésies ajoutées restent dans le navigateur de l'appareil : aucun compte, et rien n'est envoyé sur internet. L'appli ne se sert pas du micro.
+Les progrès et les poésies ajoutées restent dans le navigateur de l'appareil : aucun compte, et rien sur les progrès n'est envoyé sur internet. Seul un compteur de visites anonyme (GoatCounter) compte les ouvertures de l'appli : pas de cookie, pas de nom. L'appli ne se sert pas du micro.
 
 ## Fichiers
 
